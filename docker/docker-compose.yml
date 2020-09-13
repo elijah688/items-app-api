@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  api:
+    image: elijah668/items-app-api:1.0.0
+    volumes:
+      - data:/data.db
+    environment:
+      JWT_SECRET_KEY: secret
+    ports: 
+      - "5000:5000"
+
+volumes:
+  data:
