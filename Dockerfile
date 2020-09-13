@@ -4,8 +4,7 @@ ENV JWT_SECRET_KEY=secret
 
 WORKDIR /items-app-api
 
-RUN pip install -r requirements.txt \ 
-    && apk del git 
+RUN pip install -r requirements.txt
 
 EXPOSE 5000
 
