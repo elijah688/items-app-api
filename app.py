@@ -13,6 +13,13 @@ app = Flask(__name__)
 
 # Setup the Flask-JWT-Extended extension
 app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+if app.config['JWT_SECRET_KEY'] is None:
+    try:
+        secret_file = open("./run/secrets/jwt_secret_key", "r")
+        app.config['JWT_SECRET_KEY'] = secret_file.readline()
+        secret_file.close()
+    except BaseException as e:
+        raise ValueError("No JWT_SECRET_PROVIDED!")
 jwt = JWTManager(app)
 
 api = Api(app)
